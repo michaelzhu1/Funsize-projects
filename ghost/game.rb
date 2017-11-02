@@ -40,7 +40,7 @@ class Game
   end
 
   def take_turn
-    new_letter = get_letter()
+    new_letter = get_letter
     if valid_play?(new_letter)
       @fragment += new_letter
 
@@ -64,6 +64,7 @@ class Game
 
   def game_over?
     @losses.values.any? { |losses| losses > 2 }
+    byebug
   end
 
   def is_word?(word)
