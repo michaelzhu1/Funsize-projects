@@ -91,6 +91,8 @@
     }
 
     .panel.open {
+      display: flex;
+      flex: 5;
       font-size:40px;
     }
 
@@ -126,6 +128,19 @@
   </div>
 
   <script>
+  const panels = document.querySelectorAll('.panel');
+
+  function toggleOpen() {
+    
+  }
+
+  panels.forEach(panel => {
+    panel.addEventListener('click', toggleOpen);
+  })
+
+  panels.forEach(panel => {
+    panel.addEventListener('transitionend', showWords);
+  })
 
   </script>
 
