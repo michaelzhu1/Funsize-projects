@@ -41,13 +41,18 @@ function displayMatches() {
       <span class="population">${numberWithCommas(place.population)}</span>
     </li>
     `
-  })
+  }).join('');
+  suggestions.innerHTML = html;
 }
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 const search = document.querySelector('.search');
 const suggestions = document.querySelector('.suggestions')
 
 search.addEventListener('change', displayMatches);
+search.addEventListener('keyup', displayMatches)
 </script>
   </body>
 </html>
