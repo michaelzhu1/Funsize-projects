@@ -18,29 +18,46 @@
     }
 
     // Regular
+    console.log('hello');
 
     // Interpolated
 
     // Styled
-
+    console.log('%c hello', 'color: red; font-size: 20px;');
     // warning!
-
+    console.warn("I warn you now!");
     // Error :|
-
+    console.error("This is an error!");
     // Info
-
+    console.info("this is an info");
+    // same as console.log?
     // Testing
-
+    console.assert(1===2, 'one does not equal to two')
     // clearing
-
+    console.clear()
+    // clear is squential, only clears what before it
+    console.log(('123'));
     // Viewing DOM Elements
-
+    const p =  document.querySelector('p');
+    console.log(p);
+    console.dir(p);
     // Grouping together
 
     // counting
-
+    console.count('counting')
+    console.count('holiday')
+    console.count('holiday')
+    console.count('holiday')
+    console.count('counting')
+    console.count('counting')
+    // counting the occurances of the same thing
     // timing
-
+    console.clear();
+    console.time('time')
+    setTimeout(function () {
+      console.log('wait 3 seconds');
+      console.timeEnd('time')
+    }, 3000);
   </script>
 </body>
 </html>
