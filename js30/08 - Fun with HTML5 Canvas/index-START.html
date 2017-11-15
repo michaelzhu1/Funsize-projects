@@ -13,16 +13,26 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-ctx.strokeStyle = '#BADA55'
+ctx.strokeStyle = '#000000'
 ctx.lineJoin = 'round'
 ctx.lineCap = 'round'
+ctx.lineWidth = 50;
+ctx.globalCompositeOperation = 'multiply';
 
 let isDrawing = false;
+let positionX = 0;
+let positionY = 0;
+let hue = 0;
 function draw(event) {
   if (!isDrawing) {
     return
   }
-  console.log(event);
+  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+  ctx.beginPath();
+  ctx.lineTo(event.offsetX, event.offsetY);
+  ctx.stroke();
+  hue++;
+  ctx.lineWidth = hue;
 }
 
 canvas.addEventListener('mousemove', draw);
