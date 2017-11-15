@@ -23,6 +23,7 @@ let isDrawing = false;
 let positionX = 0;
 let positionY = 0;
 let hue = 0;
+let flip = true
 function draw(event) {
   if (!isDrawing) {
     return
@@ -31,8 +32,15 @@ function draw(event) {
   ctx.beginPath();
   ctx.lineTo(event.offsetX, event.offsetY);
   ctx.stroke();
+  if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+    flip = !flip;
+  }
   hue++;
-  ctx.lineWidth = hue;
+  if (flip) {
+    ctx.lineWidth ++
+  } else {
+    ctx.lineWidth--
+  }
 }
 
 canvas.addEventListener('mousemove', draw);
