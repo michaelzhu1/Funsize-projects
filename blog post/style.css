@@ -1,4 +1,4 @@
-* {
+/** {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -16,8 +16,8 @@ body {
 }
 
 h1, h2 {
-    color: #00960b;
-    
+    color: red;
+
 }
 
 h1 {
@@ -85,4 +85,7 @@ h2 {
     position: absolute;
     top: 10px;
     right: 30px;
+}*/
+h1 {
+  color: red;
 }
