@@ -39,7 +39,14 @@ function handleRangeChange() {
 
 function handleProgressUpdate() {
   const percent = video.currentTime / video.duration * 100;
+  // console.log(progressBar.style);
   progressBar.style.flexBasis = `${percent}%`;
+}
+
+function scrub(e) {
+  console.log(e.offsetX);
+  const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+  video.currentTime = scrubTime;
 }
 
 // Hook up the event listeners
@@ -57,4 +64,5 @@ ranges.forEach(range =>
 );
 
 video.addEventListener('timeupdate', handleProgressUpdate);
-// progressBar.addEventListener('change', handleProgressUpdate);
+
+progress.addEventListener('click', scrub);
