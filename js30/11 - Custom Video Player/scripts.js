@@ -18,7 +18,43 @@ function togglePlay() {
   }
 }
 
+function updateButton() {
+  const icon = this.paused ?  '►' : '❚ ❚';
+  playButton.textContent = icon;
+}
+
+function updateSkip() {
+  // console.log(this.dataset.skip);
+  video.currentTime += parseFloat(this.dataset.skip);
+}
+
+function handleRangeChange() {
+  // console.dir(this);
+  if (this.name === "playbackRate") {
+    video['playbackRate'] = this.value;
+  } else {
+    video['volume'] = this.value;
+  }
+}
+
+function handleProgressUpdate() {
+  const percent = video.currentTime / video.duration * 100;
+  progressBar.style.flexBasis = `${percent}%`;
+}
 
 // Hook up the event listeners
 video.addEventListener('click', togglePlay);
 playButton.addEventListener('click', togglePlay);
+video.addEventListener('play', updateButton);
+video.addEventListener('pause', updateButton);
+
+skips.forEach(skip =>
+  skip.addEventListener('click', updateSkip)
+);
+
+ranges.forEach(range =>
+  range.addEventListener('change', handleRangeChange)
+);
+
+video.addEventListener('timeupdate', handleProgressUpdate);
+// progressBar.addEventListener('change', handleProgressUpdate);
