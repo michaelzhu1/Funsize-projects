@@ -6,6 +6,7 @@ class Projects extends Component {
   deleteProject(id) {
     this.props.onDelete(id);
   }
+
   render() {
     let projectItems;
     // console.log((this.props));
@@ -24,5 +25,6 @@ class Projects extends Component {
     );
   }
 }
+
 
 export default Projects;
