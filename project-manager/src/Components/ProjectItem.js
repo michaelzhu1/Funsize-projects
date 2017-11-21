@@ -4,11 +4,11 @@ class ProjectItem extends Component {
   render() {
     console.log(this.props);
     return (
-      this.props.projects.projects.forEach(element =>
+      <div>
         <li className="projects">
-          element
+        {this.props.project.title} - {this.props.project.category}
         </li>
-      )
+      </div>
     );
   }
 }
