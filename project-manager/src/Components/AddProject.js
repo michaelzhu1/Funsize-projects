@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 class AddProject extends Component {
   render() {
     return (
-      <div className="projects">
+      <div>
+        <h2>Add Project</h2>
       </div>
     );
   }
