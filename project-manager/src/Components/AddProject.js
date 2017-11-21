@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import uuid from 'uuid';
 
 class AddProject extends Component {
   constructor() {
@@ -17,7 +17,8 @@ class AddProject extends Component {
   handleSubmit(e) {
     e.preventDefault()
      this.setState({newProject:
-       {title: this.refs.title.value,
+       {id: uuid.v4(),
+         title: this.refs.title.value,
         category: this.refs.category.value
         }
       }, function() {
