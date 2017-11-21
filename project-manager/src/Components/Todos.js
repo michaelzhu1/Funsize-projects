@@ -6,7 +6,7 @@ class Todos extends Component {
   render() {
     let todoItems;
     if (this.props.todos) {
-      todoItems = this.props.projects.map(todo =>
+      todoItems = this.props.todos.map(todo =>
         (
           <TodoItem key={todo.title} todo={todo} />
         )
