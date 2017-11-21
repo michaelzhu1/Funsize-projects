@@ -12,7 +12,7 @@ class ProjectItem extends Component {
       <div>
         <li className="projects">
         <strong>{this.props.project.title} </strong>
-        - {this.props.project.category}
+        - {this.props.project.category}&nbsp;&nbsp;
         <a href="#" onClick={this.deleteProject.bind(this, this.props.project.id)}>Delete</a>
         </li>
       </div>
