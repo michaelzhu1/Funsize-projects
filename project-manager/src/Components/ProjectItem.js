@@ -6,7 +6,8 @@ class ProjectItem extends Component {
     return (
       <div>
         <li className="projects">
-        {this.props.project.title} - {this.props.project.category}
+        <strong>{this.props.project.title} </strong>
+        - {this.props.project.category}
         </li>
       </div>
     );
