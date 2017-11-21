@@ -4,9 +4,10 @@ class TodoItem extends Component {
   render() {
     return (
       <div>
+      Titile: 
         <li>
         <strong>{this.props.todo.title} </strong>
-        - {this.props.todo.category}
+        - {this.props.todo.userId}
         </li>
       </div>
     );
