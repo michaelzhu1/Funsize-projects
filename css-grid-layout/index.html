@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSS Grid Layout</title>
+    <style>
+
+    .wrapper {
+      display: grid;
+      grid-template-columns: 30% 70%;
+      /*grid-column-gap: 1em;
+      grid-row-gap: 1em;*/
+      grid-gap: 1em;
+    }
+    .wrapper > div {
+      padding: 1em;
+      background: #eee;
+    }
+
+    .wrapper > div:nth-child(odd) {
+      background: #ddd;
+    }
+    </style>
+  </head>
+  <body>
+  <h1>CSS grid</h1>
+  <div class='wrapper'>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sit provident dolores, esse tempora error id pariatur quidem impedit repudiandae eos cumque, necessitatibus perferendis eveniet quaerat ducimus quo magnam nostrum!
+    </div>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. A minima veritatis cumque dicta sapiente aliquid odio, blanditiis ducimus, ipsa molestias labore beatae fugiat voluptatibus totam cupiditate odit voluptas delectus est.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo necessitatibus asperiores illum facere, aut perspiciatis quae est sed, fuga esse, alias enim. Eos alias perspiciatis ut, eum sed quidem excepturi.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sit provident dolores, esse tempora error id pariatur quidem impedit repudiandae eos cumque, necessitatibus perferendis eveniet quaerat ducimus quo magnam nostrum!
+    </div>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. A minima veritatis cumque dicta sapiente aliquid odio, blanditiis ducimus, ipsa molestias labore beatae fugiat voluptatibus totam cupiditate odit voluptas delectus est.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo necessitatibus asperiores illum facere, aut perspiciatis quae est sed, fuga esse, alias enim. Eos alias perspiciatis ut, eum sed quidem excepturi.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+  </div>
+  </body>
+</html>
