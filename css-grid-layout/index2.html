@@ -9,19 +9,23 @@
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 1em;
         grid-auto-rows: minmax(100px, auto);
+        border: 1px red solid;
       }
       .nested {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1em;
+        grid-auto-rows: 180px;
       }
 
       .nested > div {
-        border: 1px #333 solid;
-
+        border: 1px green solid;
+        padding: 1em;
       }
       .wrapper > div {
         background: #eee;
         padding: 1em;
+        border: 1px blue solid;
       }
       .wrapper > div:nth-child(odd) {
         background: #ddd;
@@ -41,6 +45,18 @@
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio doloremque atque rerum eius repudiandae laboriosam dignissimos, voluptates cupiditate expedita veniam reiciendis, accusamus reprehenderit ullam est, quia, sunt molestias. Modi, illum.
     </div>
     <div class='nested'>
+      <div>
+        lorem
+      </div>
+      <div>
+        lorem
+      </div>
+      <div>
+        lorem
+      </div>
+      <div>
+        lorem
+      </div>
       <div>
         lorem
       </div>
