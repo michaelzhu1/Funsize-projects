@@ -72,9 +72,10 @@
     }).join(''); // join array of string into a big string
   }
 
-  function clearItems(e) {
+  function clearItems() {
     localStorage.clear();
-    populateList([], itemsList);
+    items.length = 0;
+    populateList(items, itemsList);
   }
   addItems.addEventListener('submit', addItem);
   clearButton.addEventListener('click', clearItems);
