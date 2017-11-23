@@ -28,34 +28,55 @@
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
-  const items = [];
+  const items = JSON.parse(localStorage.getItem('items')) || [];
 
   function addItem(e) {
     e.preventDefault(); //prevent page from reloading
     // console.log(e);
     const text = (this.querySelector('[name="item"]')).value
-    console.log(text);
+    // console.log(text);
     const item = {
       text: text,
       selected: false
     }
     items.push(item);
+    localStorage.setItem('items', JSON.stringify(items));
     populateList(items, itemsList);
     this.reset();
   }
 
+  // The problem with this is that when the eventlistener is attached before the lists get created. And when you add a new item, a whole set of items get recreated without the eventlistener attached to them anymore. So to fix this issue, we delegate the element that's always there since the beginning, a 'responsible' parent
+  function toggleDone(e) {
+    if (!e.target.matches('input')) {
+      return
+    }// now it skips the targets that are not input
+    // console.log(e.target.dataset.index); // Only logs the input elements
+    const element = e.target;
+    const index = element.dataset.index
+    items[index].selected = !items[index].selected
+    localStorage.setItem('items', JSON.stringify(items))
+    populateList(items, itemsList)
+  }
+
+
   function populateList(plates = [], platesList) {
-    platesList.innerHTML = plates.map((plate) => {
+    platesList.innerHTML = plates.map((plate, i) => {
       return `
         <li>
-          <input type="checkbox"></input>
-          <label>${plate.text}</label>
+          <input type="checkbox" data-index=${i} id="item${i}" ${plate.selected ? 'checked' : ''}/>
+          <label for="item${i}">${plate.text}</label>
         </li>
       `
     }).join(''); // join array of string into a big string
   }
 
   addItems.addEventListener('submit', addItem);
+  itemsList.addEventListener('click', toggleDone); //how to tell which item was clicked?
+  // This is event delegation. We listen for click on something that's higher, and
+  // then inside of it we check if it's actually something we want.
+  // In this case, we listen for all the clicks on the big ul, and then
+  // in the function, we filter out only the click on the input elements
+  populateList(items, itemsList);
 </script>
 
 
