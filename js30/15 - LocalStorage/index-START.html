@@ -22,12 +22,14 @@
     <form class="add-items">
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
+      <input type="reset" name="clear" value="Clear Items">
     </form>
   </div>
 
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
+  const clearButton = document.querySelector('[name="clear"]');
   const items = JSON.parse(localStorage.getItem('items')) || [];
 
   function addItem(e) {
@@ -70,7 +72,12 @@
     }).join(''); // join array of string into a big string
   }
 
+  function clearItems(e) {
+    localStorage.clear();
+    populateList([], itemsList);
+  }
   addItems.addEventListener('submit', addItem);
+  clearButton.addEventListener('click', clearItems);
   itemsList.addEventListener('click', toggleDone); //how to tell which item was clicked?
   // This is event delegation. We listen for click on something that's higher, and
   // then inside of it we check if it's actually something we want.
