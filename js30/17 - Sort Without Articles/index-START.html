@@ -67,7 +67,10 @@ function mySort(bands) {
   })
 }
 
-
+const list = document.getElementById('bands');
+list.innerHTML = mySort(bands).map((band) =>
+  `<li>${band}</li>`
+).join('');
 
 
 </script>
