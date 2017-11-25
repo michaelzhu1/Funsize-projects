@@ -177,7 +177,7 @@
     <li data-time="1:56">
       Video 57
     </li>
-    <li data-time="4:04">
+    <li data-time="4:06">
       Video 58
     </li>
   </ul>
@@ -192,8 +192,12 @@ const times = listNodes
       return hour * 60 + seconds
     })).reduce((total, seconds) => total + seconds);
 
-
-
+let secondsLeft = times;
+const hours = Math.floor(secondsLeft / 3600);
+secondsLeft = secondsLeft % 3600;
+const minutes = Math.floor(secondsLeft / 60);
+secondsLeft = secondsLeft % 60;
+console.log(hours,minutes, secondsLeft);
 </script>
 </body>
 </html>
