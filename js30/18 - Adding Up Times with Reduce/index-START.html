@@ -182,6 +182,18 @@
     </li>
   </ul>
 <script>
+const listNodes = Array.from(document.querySelectorAll('[data-time]'));
+
+const times = listNodes
+  .map(node => node.dataset.time)
+  .map(time => time.split(':')
+    .map(parseFloat)
+    .reduce((hour, seconds) => {
+      return hour * 60 + seconds
+    })).reduce((total, seconds) => total + seconds);
+
+
+
 </script>
 </body>
 </html>
