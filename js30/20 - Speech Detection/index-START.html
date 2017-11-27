@@ -17,8 +17,10 @@
 
 
   let p = document.createElement('p');
+  let div = document.createElement('div');
   const words = document.querySelector('.words');
   words.appendChild(p);
+  words.appendChild(div);
 
   recognition.addEventListener('result', (e) =>{
     const transcript = Array.from(e.results)
@@ -27,11 +29,38 @@
       .map(result2 =>
           result2.transcript)
       .join('')
-      console.log(transcript);
+
+      if (transcript.includes('+')) {
+        arrayTranscript = transcript.split(' ');
+        let answer;
+        for (let i = 0; i < arrayTranscript.length; i++) {
+          if (arrayTranscript[i] === '+') {
+            const num1 = parseInt(arrayTranscript[i - 1]);
+            const num2 = parseInt(arrayTranscript[i + 1]);
+            answer = answerAddition(num1, num2);
+          }
+        }
+        const result = `The answer is ${answer.toString()}`;
+        div.textContent = result;
+      }
+
+      p.textContent = transcript;
+
+      if (e.results[0].isFinal) {
+        p = document.createElement('p');
+        div = document.createElement('div');
+        words.appendChild(p);
+        words.appendChild(div)
+      }
+
       }
   )
 
-  recognition.addEventListener('end', recognition.start());
+  function answerAddition(num1, num2) {
+    return num1 + num2;
+  }
+
+  recognition.addEventListener('end', recognition.start);
   recognition.start();
 
 </script>
