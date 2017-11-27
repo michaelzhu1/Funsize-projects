@@ -30,17 +30,21 @@
           result2.transcript)
       .join('')
 
-      if (transcript.includes('+')) {
+      if (transcript.includes('+') || transcript.includes('-')) {
         arrayTranscript = transcript.split(' ');
         let answer;
         for (let i = 0; i < arrayTranscript.length; i++) {
           if (arrayTranscript[i] === '+') {
             const num1 = parseInt(arrayTranscript[i - 1]);
             const num2 = parseInt(arrayTranscript[i + 1]);
-            answer = answerAddition(num1, num2);
+            answer = addition(num1, num2);
+          } else if (arrayTranscript[i] === '-') {
+            const num1 = parseInt(arrayTranscript[i - 1]);
+            const num2 = parseInt(arrayTranscript[i + 1]);
+            answer = subtraction(num1, num2);
           }
         }
-        const result = `The answer is ${answer.toString()}`;
+        const result = `The answer is ${answer ? answer.toString() : ''}`;
         div.textContent = result;
       }
 
@@ -56,9 +60,15 @@
       }
   )
 
-  function answerAddition(num1, num2) {
+  function addition(num1, num2) {
     return num1 + num2;
   }
+
+  function subtraction(num1, num2) {
+    return num1 - num2;
+  }
+
+
 
   recognition.addEventListener('end', recognition.start);
   recognition.start();
