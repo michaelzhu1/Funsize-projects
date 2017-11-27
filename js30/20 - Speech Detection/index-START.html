@@ -30,7 +30,7 @@
           result2.transcript)
       .join('')
 
-      if (transcript.includes('+') || transcript.includes('-')) {
+      if (transcript.includes('+') || transcript.includes('-') || transcript.includes('*') || transcript.includes('/')) {
         arrayTranscript = transcript.split(' ');
         let answer;
         for (let i = 0; i < arrayTranscript.length; i++) {
@@ -42,6 +42,14 @@
             const num1 = parseInt(arrayTranscript[i - 1]);
             const num2 = parseInt(arrayTranscript[i + 1]);
             answer = subtraction(num1, num2);
+          } else if (arrayTranscript[i] === '*') {
+            const num1 = parseInt(arrayTranscript[i - 1]);
+            const num2 = parseInt(arrayTranscript[i + 1]);
+            answer = multiply(num1, num2);
+          } else if (arrayTranscript[i] === '/') {
+            const num1 = parseInt(arrayTranscript[i - 1]);
+            const num2 = parseInt(arrayTranscript[i + 1]);
+            answer = divide(num1, num2);
           }
         }
         const result = `The answer is ${answer ? answer.toString() : ''}`;
@@ -66,6 +74,14 @@
 
   function subtraction(num1, num2) {
     return num1 - num2;
+  }
+
+  function multiply(num1, num2) {
+    return num1 * num2;
+  }
+
+  function divide(num1, num2) {
+    return num1 / num2;
   }
 
 
