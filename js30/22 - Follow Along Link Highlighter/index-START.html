@@ -32,9 +32,17 @@
   const highlight = document.createElement('span');
   // add highlight css class onto highlight dom
   highlight.classList.add('highlight');
-  // append highlight dom into the body 
+  // append highlight dom into the body
   document.body.appendChild(highlight);
 
+
+  function highlightLink() {
+    console.log(this);
+  }
+
+  triggers.forEach(dom => {
+    dom.addEventListener('mouseenter', highlightLink)
+  })
 
   </script>
 </body>
