@@ -35,14 +35,23 @@
   // append highlight dom into the body
   document.body.appendChild(highlight);
 
+  // now need to figure out the width and height of the element we hovered and the position of the element on the page
 
   function highlightLink() {
-    console.log(this);
+    // this gives us where the element that we hovered is, and the width and height
+    const linkCoords = this.getBoundingClientRect();
+    console.log(linkCoords);
+    highlight.style.width = `${linkCoords.width}px`;
+    highlight.style.height = `${linkCoords.height}px`;
+    // add additional scrollY and scrollX to top and left so the position is updated after user scrolls 
+    highlight.style.top = `${linkCoords.top + window.scrollY}px`;
+    highlight.style.left = `${linkCoords.left + window.scrollX}px`;
   }
 
   triggers.forEach(dom => {
     dom.addEventListener('mouseenter', highlightLink)
   })
+
 
   </script>
 </body>
