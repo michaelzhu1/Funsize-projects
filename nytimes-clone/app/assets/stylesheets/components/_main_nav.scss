@@ -1,17 +1,29 @@
 .main-nav {
-
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid $light-gray;
 }
 
 .left-nav > ul,
 .right-nav > ul {
-
+  display: flex;
+  align-items: center;
 }
 
 .left-nav > ul > li {
-
+  text-transform: uppercase;
+  font-family: $sans-serif;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 7px 9px;
+  margin-left: 20px;
+  transition: background-color 0.3s;
+  cursor: pointer;
 }
 
 .right-nav > ul > li {
+  cursor: pointer;
 
 }
 
