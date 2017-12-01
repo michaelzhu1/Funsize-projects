@@ -23,6 +23,10 @@ body {
   transition: transform 0.5s;
 }
 
+.fix-nav .site-wrap{
+  transform: scale(1);
+}
+
 header {
   text-align: center;
   height:50vh;
@@ -48,6 +52,11 @@ nav {
   z-index: 1;
 }
 
+.fix-nav nav {
+  position: fixed;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.5);
+}
+
 nav ul {
   margin: 0;
   padding:0;
@@ -67,13 +76,22 @@ li.logo {
   max-width:0;
   overflow: hidden;
   background: white;
-  transition: all .5s;
+  transition: all 2s;
   font-weight: 600;
   font-size: 30px;
 }
 
+.fix-nav li.logo {
+  max-width: 700px;
+  font-size: 50px;
+  background: black;
+}
+
 li.logo a {
   color:black;
+}
+.fix-nav li.logo a {
+  color:white;
 }
 
 nav a {
