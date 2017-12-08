@@ -1,9 +1,12 @@
+let countdown;
+
 function timer(seconds) {
+  clearInterval(countdown);
   const now = Date.now();
   displayTimeLeft(seconds);
   const then = now + seconds * 1000;
   displayEndTime(then);
-  const countdown = setInterval(() => {
+  countdown = setInterval(() => {
     const timeLeft = Math.round((then - Date.now()) / 1000);
     if (timeLeft < 0) {
       clearInterval(countdown);
@@ -34,3 +37,11 @@ function displayEndTime(end) {
 
 const timerDisplay = document.querySelector('.display__time-left');
 const endTimeDisplay = document.querySelector('.display__end-time');
+
+
+const buttons = document.querySelectorAll('[data-time]');
+buttons.forEach(button => button.addEventListener('click', startTimer));
+
+function startTimer() {
+  return timer(this.dataset.time);
+}
