@@ -36,6 +36,35 @@
   const holes = document.querySelectorAll('.hole');
   const scoreBoard = document.querySelector('.score');
   const moles = document.querySelectorAll('.mole');
+  let prevHole;
+
+  function randTime(min, max) {
+    const time = Math.floor(Math.random() * (max + 1 - min) + min);
+    return time;
+  }
+
+  function randHole(holes) {
+    const index = Math.floor(Math.random() * holes.length);
+    const hole = holes[index];
+    if (hole === prevHole) {
+      console.log('same hole');
+      return randHole(holes);
+    }
+    prevHole = hole;
+    return hole;
+  }
+
+  function peep() {
+    const time = randTime(400, 1000);
+    const hole = randHole(holes);
+    hole.classList.add('up');
+    setTimeout(() => {
+      hole.classList.remove('up');
+      peep();
+    }, time);
+  }
+
+
 
 </script>
 </body>
