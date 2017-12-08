@@ -45,3 +45,11 @@ buttons.forEach(button => button.addEventListener('click', startTimer));
 function startTimer() {
   return timer(this.dataset.time);
 }
+
+document.customForm.addEventListener('submit', handleSubmit);
+
+function handleSubmit(e) {
+  e.preventDefault();
+  timer(this.minutes.value * 60);
+  this.reset();
+}
