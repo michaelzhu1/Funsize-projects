@@ -50,7 +50,6 @@
     const index = Math.floor(Math.random() * holes.length);
     const hole = holes[index];
     if (hole === prevHole) {
-      console.log('same hole');
       return randHole(holes);
     }
     prevHole = hole;
@@ -93,10 +92,6 @@
   }
 
   moles.forEach(mole => mole.addEventListener('click', bonk));
-
-
-
-
 </script>
 </body>
 </html>
