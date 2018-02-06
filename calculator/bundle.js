@@ -22190,7 +22190,7 @@ var Calculator = function (_React$Component) {
     value: function setNum1(e) {
       e.preventDefault();
       var num1 = e.target.value ? parseInt(e.target.value) : '';
-      if (!num1 && num1.length !== 0) {
+      if (isNaN(num1)) {
         return;
       }
       this.setState({ num1: num1 });
@@ -22200,7 +22200,7 @@ var Calculator = function (_React$Component) {
     value: function setNum2(e) {
       e.preventDefault();
       var num2 = e.target.value ? parseInt(e.target.value) : '';
-      if (!num2 && num2.length !== 0) {
+      if (isNaN(num2)) {
         return;
       } // preventing user inputting characters
       this.setState({ num2: num2 });

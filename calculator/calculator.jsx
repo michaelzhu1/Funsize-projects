@@ -18,7 +18,7 @@ class Calculator extends React.Component {
   setNum1(e) {
     e.preventDefault();
     const num1 = e.target.value ? parseInt(e.target.value) : '';
-    if (!num1 && num1.length !== 0) {
+    if (isNaN(num1)) {
       return;
     }
     this.setState({num1});
@@ -27,7 +27,7 @@ class Calculator extends React.Component {
   setNum2(e) {
     e.preventDefault();
     const num2 = e.target.value ? parseInt(e.target.value) : '';
-    if (!num2 && num2.length !== 0) {
+    if (isNaN(num2)) {
       return;
     } // preventing user inputting characters
     this.setState({num2});
