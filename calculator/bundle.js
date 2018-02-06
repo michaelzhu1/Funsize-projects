@@ -22179,6 +22179,10 @@ var Calculator = function (_React$Component) {
     _this.setNum1 = _this.setNum1.bind(_this);
     _this.setNum2 = _this.setNum2.bind(_this);
     _this.add = _this.add.bind(_this);
+    _this.subtract = _this.subtract.bind(_this);
+    _this.multiply = _this.multiply.bind(_this);
+    _this.divide = _this.divide.bind(_this);
+    _this.clear = _this.clear.bind(_this);
     return _this;
   }
 
@@ -22210,21 +22214,21 @@ var Calculator = function (_React$Component) {
     value: function add(e) {
       e.preventDefault();
       var result = this.state.num1 + this.state.num2;
-      this.setState({ result: result });
+      this.setState({ result: result, error: '' });
     }
   }, {
     key: 'subtract',
     value: function subtract(e) {
       e.preventDefault();
       var result = this.state.num1 - this.state.num2;
-      this.setState({ result: result });
+      this.setState({ result: result, error: '' });
     }
   }, {
     key: 'multiply',
     value: function multiply(e) {
       e.preventDefault();
       var result = this.state.num1 * this.state.num2;
-      this.setState({ result: result });
+      this.setState({ result: result, error: '' });
     }
   }, {
     key: 'divide',
@@ -22232,9 +22236,16 @@ var Calculator = function (_React$Component) {
       e.preventDefault();
       if (this.state.num2 === 0) {
         this.setState({ error: 'Can not divide 0' });
+        return;
       }
       var result = this.state.num1 / this.state.num2;
-      this.setState({ result: result });
+      this.setState({ result: result, error: '' });
+    }
+  }, {
+    key: 'clear',
+    value: function clear(e) {
+      e.preventDefault();
+      this.setState({ num1: '', num2: '', result: 0, error: '' });
     }
   }, {
     key: 'render',
@@ -22273,6 +22284,11 @@ var Calculator = function (_React$Component) {
           'button',
           { onClick: this.divide },
           '/'
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.clear },
+          'Clear'
         )
       );
     }
