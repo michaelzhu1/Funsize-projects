@@ -22258,7 +22258,7 @@ var Calculator = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'main-panel' },
         _react2.default.createElement(
           'h1',
           null,

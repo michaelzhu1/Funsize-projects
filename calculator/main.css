@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-image: url("https://farm4.staticflickr.com/3854/32764887833_7c91946505_k.jpg");
+  display: flex;
+  justify-content: center;
+}
+
+.main-panel {
+  background-color: #ed385a;
+  height: 500px;
+  width: 600px;
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px #888888;
+  padding: 30px;
+}

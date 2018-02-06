@@ -73,7 +73,7 @@ class Calculator extends React.Component {
   render() {
     const { num1, num2, result, error} = this.state;
     return (
-      <div>
+      <div className="main-panel">
         <h1>{result}</h1>
         <h2>{error}</h2>
         <input onChange={this.setNum1} value={num1}/>
