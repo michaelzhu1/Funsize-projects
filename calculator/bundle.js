@@ -22175,12 +22175,35 @@ var Calculator = function (_React$Component) {
       num1: '',
       num2: ''
     };
+    _this.setNum1 = _this.setNum1.bind(_this);
+    _this.setNum2 = _this.setNum2.bind(_this);
     return _this;
   }
 
   // your code here
 
+
   _createClass(Calculator, [{
+    key: 'setNum1',
+    value: function setNum1(e) {
+      e.preventDefault();
+      var num1 = e.target.value ? parseInt(e.target.value) : '';
+      if (!num1) {
+        return;
+      }
+      this.setState({ num1: num1 });
+    }
+  }, {
+    key: 'setNum2',
+    value: function setNum2(e) {
+      e.preventDefault();
+      var num2 = e.target.value ? parseInt(e.target.value) : '';
+      if (!num2) {
+        return;
+      } // preventing user inputting characters
+      this.setState({ num2: num2 });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -22190,7 +22213,9 @@ var Calculator = function (_React$Component) {
           'h1',
           null,
           this.state.result
-        )
+        ),
+        _react2.default.createElement('input', { onChange: this.setNum1, value: this.state.num1 }),
+        _react2.default.createElement('input', { onChange: this.setNum2, value: this.state.num2 })
       );
     }
   }]);
