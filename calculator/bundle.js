@@ -22173,10 +22173,12 @@ var Calculator = function (_React$Component) {
     _this.state = {
       result: 0,
       num1: '',
-      num2: ''
+      num2: '',
+      error: ''
     };
     _this.setNum1 = _this.setNum1.bind(_this);
     _this.setNum2 = _this.setNum2.bind(_this);
+    _this.add = _this.add.bind(_this);
     return _this;
   }
 
@@ -22188,7 +22190,7 @@ var Calculator = function (_React$Component) {
     value: function setNum1(e) {
       e.preventDefault();
       var num1 = e.target.value ? parseInt(e.target.value) : '';
-      if (!num1) {
+      if (!num1 && num1.length !== 0) {
         return;
       }
       this.setState({ num1: num1 });
@@ -22198,10 +22200,41 @@ var Calculator = function (_React$Component) {
     value: function setNum2(e) {
       e.preventDefault();
       var num2 = e.target.value ? parseInt(e.target.value) : '';
-      if (!num2) {
+      if (!num2 && num2.length !== 0) {
         return;
       } // preventing user inputting characters
       this.setState({ num2: num2 });
+    }
+  }, {
+    key: 'add',
+    value: function add(e) {
+      e.preventDefault();
+      var result = this.state.num1 + this.state.num2;
+      this.setState({ result: result });
+    }
+  }, {
+    key: 'subtract',
+    value: function subtract(e) {
+      e.preventDefault();
+      var result = this.state.num1 - this.state.num2;
+      this.setState({ result: result });
+    }
+  }, {
+    key: 'multiply',
+    value: function multiply(e) {
+      e.preventDefault();
+      var result = this.state.num1 * this.state.num2;
+      this.setState({ result: result });
+    }
+  }, {
+    key: 'divide',
+    value: function divide(e) {
+      e.preventDefault();
+      if (this.state.num2 === 0) {
+        this.setState({ error: 'Can not divide 0' });
+      }
+      var result = this.state.num1 / this.state.num2;
+      this.setState({ result: result });
     }
   }, {
     key: 'render',
@@ -22214,8 +22247,33 @@ var Calculator = function (_React$Component) {
           null,
           this.state.result
         ),
+        _react2.default.createElement(
+          'h2',
+          null,
+          this.state.error
+        ),
         _react2.default.createElement('input', { onChange: this.setNum1, value: this.state.num1 }),
-        _react2.default.createElement('input', { onChange: this.setNum2, value: this.state.num2 })
+        _react2.default.createElement('input', { onChange: this.setNum2, value: this.state.num2 }),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.add },
+          '+'
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.subtract },
+          '-'
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.multiply },
+          '*'
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.divide },
+          '/'
+        )
       );
     }
   }]);
