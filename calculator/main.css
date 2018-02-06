@@ -8,10 +8,27 @@ body {
 }
 
 .main-panel {
-  background-color: #ed385a;
+  background-color: #c7d7d4;
   height: 500px;
   width: 600px;
   border-radius: 5px;
   box-shadow: 10px 10px 10px #888888;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.display {
+    height: 400px;
+}
+
+.buttons {
+
+}
+
+button {
+  width: 100px;
+  /* height: 50px; */
+  font-size: 30px;
+  margin-left: 5px;
 }
