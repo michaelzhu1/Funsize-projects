@@ -24,11 +24,16 @@ class Clock extends React.Component {
   }
 
   render() {
-    const time = this.state.time;
+    let hours = this.state.time.getHours();
+    let minutes = this.state.time.getMinutes();
+    let seconds = this.state.time.getSeconds();
+    hours = (hours < 10) ? `0${hours}` : hours;
+    minutes = (minutes < 10) ? `0${minutes}` : minutes;
+    seconds = (seconds < 10) ? `0${seconds}` : seconds;
     return(
       <div>
         <h1>Clock</h1>
-        {time.getHours()} : {time.getMinutes()} : {time.getSeconds()}
+        {hours} : {minutes} : {seconds}
       </div>
     );
   }
