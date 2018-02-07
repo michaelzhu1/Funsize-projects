@@ -31,4 +31,5 @@ button {
   /* height: 50px; */
   font-size: 30px;
   margin-left: 5px;
+  border: 4px outset ;
 }
