@@ -1,7 +1,7 @@
 .clock {
   height: 500px;
-  width: 400px;
-  margin: 100px auto;
+  max-width: 400px;
+  margin: 100px;
   background-color: gray;
   display: flex;
   flex-direction: column;
