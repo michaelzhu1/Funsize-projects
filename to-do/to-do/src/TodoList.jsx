@@ -9,7 +9,8 @@ export const TodoList = (props) => {
         {props.todos.map((todo, index) => (
           <TodoItem
             key={index}
-            todo={todo} />
+            todo={todo}
+            deleteTodo={() => props.removeTodo(index)} />
         ))
       }
     </ul>

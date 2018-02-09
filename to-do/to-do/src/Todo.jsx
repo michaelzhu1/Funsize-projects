@@ -25,10 +25,16 @@ class Todo extends React.Component {
     this.setState({itemList: oldList, item: ''});
   }
 
+  handleDelete(index) {
+    const newList = this.state.itemList.slice();
+    newList.splice(index,1);
+    this.setState({itemList: newList, item: ''});
+  }
+
   render() {
     return(
       <div>
-        <TodoList todos={this.state.itemList}/>
+        <TodoList removeTodo={(index) => this.handleDelete(index)} todos={this.state.itemList}/>
         <form>
           <input type='text' onChange={this.update} value={this.state.item}></input>
           <input type='submit' onClick={this.handleSubmit} ></input>

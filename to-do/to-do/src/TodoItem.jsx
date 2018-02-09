@@ -1,7 +1,10 @@
 import React from 'react';
 
-export const TodoItem = ({todo}) => {
+export const TodoItem = ({todo, deleteTodo}) => {
   return(
-    <li>{todo}</li>
+    <div>
+      <li>{todo}</li>
+      <button onClick={deleteTodo}>Delete Todo</button>
+    </div>
   );
 };
