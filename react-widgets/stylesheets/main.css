@@ -33,6 +33,17 @@ span, article, footer, time, small {
   text-align: center;
   font-family: Orbitron;
   justify-content: center;
+  margin: 0 auto;
+  border: 2px black solid;
+}
+
+.clock h1 {
+  color: black;
+}
+
+.clock p {
+  display: flex;
+  justify-content: space-between;
 }
 
 .tabs {
