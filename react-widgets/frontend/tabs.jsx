@@ -18,7 +18,7 @@ const Header = (props) => {
     );
   });
   return (
-    <ul>
+    <ul className='tab-header'>
       {headers}
     </ul>
   );
@@ -32,6 +32,7 @@ class Tabs extends React.Component{
     this.state = {
       currentTab: 0
     };
+    this.selectTab = this.selectTab.bind(this);
   }
 
   selectTab(num) {
@@ -39,6 +40,7 @@ class Tabs extends React.Component{
   }
 
   render() {
+    let pane = this.props.tabs[this.state.currentTab];
     return(
       <div className="tabs">
         <h1>Tabs</h1>
@@ -46,6 +48,11 @@ class Tabs extends React.Component{
           currentTab={this.state.currentTab}
           onTabChosen={this.selectTab}
           panes={this.props.tabs}/>
+        <div className="tab-body">
+          <article>
+            {pane.content}
+          </article>
+        </div>
       </div>
     );
   }
