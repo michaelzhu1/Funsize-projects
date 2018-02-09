@@ -1,5 +1,5 @@
 import React from 'react';
-import {TodoItem} from './TodoItem';
+import TodoItem from './TodoItem';
 
 
 export const TodoList = (props) => {
@@ -10,7 +10,9 @@ export const TodoList = (props) => {
           <TodoItem
             key={index}
             todo={todo}
-            deleteTodo={() => props.removeTodo(index)} />
+            deleteTodo={() => props.removeTodo(index)}
+            updateTodo={(newTodo) => props.editTodo(newTodo,index)}
+            index={index}/>
         ))
       }
     </ul>

@@ -11,6 +11,7 @@ class Todo extends React.Component {
     };
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   update(e) {
@@ -26,15 +27,27 @@ class Todo extends React.Component {
   }
 
   handleDelete(index) {
+    console.log(index);
     const newList = this.state.itemList.slice();
+    console.log(newList);
     newList.splice(index,1);
+    console.log(newList);
+    this.setState({itemList: newList, item: ''});
+  }
+
+  handleUpdate(newTodo, index) {
+    const newList = this.state.itemList.slice();
+    newList[index] = newTodo;
     this.setState({itemList: newList, item: ''});
   }
 
   render() {
     return(
       <div>
-        <TodoList removeTodo={(index) => this.handleDelete(index)} todos={this.state.itemList}/>
+        <TodoList
+          removeTodo={(index) => this.handleDelete(index)}
+          todos={this.state.itemList}
+          editTodo={(newTodo, index) => this.handleUpdate(newTodo, index)}/>
         <form>
           <input type='text' onChange={this.update} value={this.state.item}></input>
           <input type='submit' onClick={this.handleSubmit} ></input>
