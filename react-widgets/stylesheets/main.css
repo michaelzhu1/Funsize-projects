@@ -1,9 +1,40 @@
+/* CSS reset */
+
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: sans-serif;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+  background: transparent;
+  list-style: none;
+}
+
+
 .clock {
-  height: 500px;
-  max-width: 400px;
-  margin: 100px;
-  background-color: gray;
+  padding: 40px;
+  border-radius: 1000px;
+  height: 300px;
+  width: 300px;
+  color: white;
+  font-size: 28px;
+  background-color: orange;
   display: flex;
   flex-direction: column;
   text-align: center;
+  font-family: Orbitron;
+  justify-content: center;
+}
+
+.tabs {
+  background-color: lightblue;
 }
