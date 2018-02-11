@@ -7,6 +7,7 @@ I built this application with React, Redux and no backend. I tried to build this
 * Add a new post-it note : Add button is disabled unless both title and body have content
 * Update an existing post-it note : Save button is disabled unless there is an change
 * Delete a post-it note
+* Update a color of a post-it note
 
 ## Tech Stack
 
