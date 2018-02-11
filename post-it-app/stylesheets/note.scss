@@ -26,6 +26,31 @@
 
 .note-color {
   height: 8px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.title-section {
+  height: 72px;
+  border-bottom: 1px solid gray;
+  font-size: 25px;
+  padding: 25px;
+}
+
+.body-section {
+  padding: 25px;
+  font-size: 20px;
+  color: gray;
+}
+
+.note-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icons i {
+  margin-left: 15px;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 800px) {

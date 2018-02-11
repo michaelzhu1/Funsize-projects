@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from "./header";
+import HeaderContainer from "./header_container";
 import NoteIndexContainer from "./note_index_container";
 import ModalContainer from "./modal_container";
 
@@ -22,14 +22,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header addNote={this.openModal}/>
+        <HeaderContainer />
         <NoteIndexContainer />
-        <button onClick={() => this.openModal()}>Open modal</button>
         <ModalContainer
-          isOpen={this.state.isModalOpen}
           width={840}
           height={920}
-          onClose={() => this.closeModal()}>
+          >
           <h1>Modal title</h1>
           <p>hello</p>
         </ModalContainer>

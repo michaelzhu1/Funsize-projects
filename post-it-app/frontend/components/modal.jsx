@@ -13,6 +13,14 @@ class Modal extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  openModal() {
+    this.props.updateModal(true);
+  }
+
+  closeModal() {
+    this.props.updateModal(false);
+  }
+
   updateTitle(e){
     this.setState({title: e.target.value});
   }
@@ -31,11 +39,11 @@ class Modal extends React.Component {
     this.setState({title: '',
           body: '',
           color: ''});
-    this.props.onClose();
+    this.closeModal();
   }
 
   render() {
-    if (this.props.isOpen === false) {
+    if (this.props.modal.isOpen === false) {
       return null;
     }
 
@@ -104,21 +112,13 @@ class Modal extends React.Component {
             {this.props.children}
             <input type="submit" value="Add"/>
           </form>
-          <button onClick={() => this.props.onClose()}>Cancel</button>
+          <button onClick={() => this.closeModal()}>Cancel</button>
         </div>
         {!this.props.noBackdrop &&
             <div className={this.props.backdropClassName} style={backdropStyle}
-                 onClick={e => this.close(e)}/>}
+                 onClick={e => this.closeModal()}/>}
       </div>
     );
-  }
-
-  close(e) {
-    e.preventDefault();
-
-    if (this.props.onClose) {
-      this.props.onClose();
-    }
   }
 }
 
