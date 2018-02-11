@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "./header";
 import NoteIndexContainer from "./note_index_container";
-import Modal from "./modal";
+import ModalContainer from "./modal_container";
 
 class App extends React.Component {
   constructor(props) {
@@ -25,11 +25,14 @@ class App extends React.Component {
         <Header addNote={this.openModal}/>
         <NoteIndexContainer />
         <button onClick={() => this.openModal()}>Open modal</button>
-        <Modal isOpen={this.state.isModalOpen} onClose={() => this.closeModal()}>
+        <ModalContainer
+          isOpen={this.state.isModalOpen}
+          width={840}
+          height={920}
+          onClose={() => this.closeModal()}>
           <h1>Modal title</h1>
           <p>hello</p>
-          <p><button onClick={() => this.closeModal()}>Close</button></p>
-        </Modal>
+        </ModalContainer>
       </div>
     );
   }

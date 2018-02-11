@@ -8,10 +8,12 @@ class NoteIndex extends React.Component {
 
   render() {
     return (
-      <div className="note-index">
-        {this.props.note.map((note, index) => (
-          <NoteIndexItem key={index} id={index} note={note} />
-        ))}
+      <div className="note-container">
+        <div className="note-index">
+          {this.props.note.map((note, index) => (
+            <NoteIndexItem key={index} id={index} note={note} />
+          ))}
+        </div>
       </div>
     );
   }
