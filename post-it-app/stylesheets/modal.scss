@@ -80,6 +80,12 @@
   flex-direction: column;
 }
 
+::placeholder {
+  color: #d9d3d3;
+  font-style: italic;
+  font-weight: 300;
+}
+
 .add-btn-modal {
   color: white;
   text-transform: capitalize;
