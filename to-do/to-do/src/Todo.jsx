@@ -27,11 +27,8 @@ class Todo extends React.Component {
   }
 
   handleDelete(index) {
-    console.log(index);
     const newList = this.state.itemList.slice();
-    console.log(newList);
     newList.splice(index,1);
-    console.log(newList);
     this.setState({itemList: newList, item: ''});
   }
 
