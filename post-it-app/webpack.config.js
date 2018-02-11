@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
   context: __dirname,
@@ -12,15 +12,15 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         query: {
-          presets: ['react', 'env']
+          presets: ["react", "env"]
         }
       }
     ]
   },
   resolve: {
-    extensions: [".js", ".jsx", "*" ]
+    extensions: [".js", ".jsx", "*"]
   },
-  devtool: 'source-map',
+  devtool: "source-map"
 };

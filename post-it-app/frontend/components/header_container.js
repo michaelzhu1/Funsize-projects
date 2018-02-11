@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
-import Header from './header';
+import { connect } from "react-redux";
+import Header from "./header";
 import { updateModal } from "../actions/modal_actions";
 
 const mapDispatchToProps = dispatch => ({

@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 class Modal extends React.Component {
   constructor(props) {
     super(props);
-    const title =  '';
-    const body =  '';
-    const color = 'rgb(246, 150, 161)';
+    const title = "";
+    const body = "";
+    const color = "rgb(246, 150, 161)";
     this.state = {
       title: title,
       body: body,
@@ -26,26 +26,26 @@ class Modal extends React.Component {
   closeModal() {
     this.props.updateModal(false);
     if (this.props.modal.type === "save") {
-      this.setState({title: "", body: "", color: 'rgb(246, 150, 161)'});
+      this.setState({ title: "", body: "", color: "rgb(246, 150, 161)" });
     }
   }
 
-  updateTitle(e){
-    this.setState({title: e.target.value});
+  updateTitle(e) {
+    this.setState({ title: e.target.value });
     this.checkIfAddSaveIsActive();
   }
 
-  updateBody(e){
-    this.setState({body: e.target.value});
+  updateBody(e) {
+    this.setState({ body: e.target.value });
     this.checkIfAddSaveIsActive();
   }
 
   updateColor(color, e) {
     e.persist();
-    this.setState({color: color});
-    this.removeClass('color-outline');
-    e.target.classList.add('color-outline');
-    if (this.props.type === 'save') {
+    this.setState({ color: color });
+    this.removeClass("color-outline");
+    e.target.classList.add("color-outline");
+    if (this.props.type === "save") {
       this.checkIfAddSaveIsActive();
     }
   }
@@ -59,10 +59,14 @@ class Modal extends React.Component {
 
   checkIfAddSaveIsActive() {
     const { note } = this.props;
-    const { title, body, color} = this.props.note;
+    const { title, body, color } = this.props.note;
     const { type, id } = this.props.modal;
-    if (type === 'save') {
-      if (note[id].body === body && note[id].title === title && note[id].color === color) {
+    if (type === "save") {
+      if (
+        note[id].body === body &&
+        note[id].title === title &&
+        note[id].color === color
+      ) {
         this.setState({
           addDisabled: true
         });
@@ -71,7 +75,10 @@ class Modal extends React.Component {
           addDisabled: false
         });
       }
-    } else if (type === 'add' && this.state.title.length + this.state.body.length > 0) {
+    } else if (
+      type === "add" &&
+      this.state.title.length + this.state.body.length > 0
+    ) {
       this.setState({
         addDisabled: false
       });
@@ -85,17 +92,31 @@ class Modal extends React.Component {
   handleSubmit(e) {
     const { addNote, updateNote } = this.props;
     e.preventDefault();
-    if (this.props.modal.type === 'add') {
+    if (this.props.modal.type === "add") {
       addNote(this.state);
-    } else if (this.props.modal.type === 'save') {
-      const title = this.state.title === '' ? this.props.note[this.props.modal.id].title : this.state.title;
-      const body = this.state.body === '' ? this.props.note[this.props.modal.id].body : this.state.body;
-      const color = this.state.color === 'rgb(246, 150, 161)' ? this.props.note[this.props.modal.id].color : this.state.color;
-      updateNote({title: title, body: body, color: color}, this.props.modal.id);
+    } else if (this.props.modal.type === "save") {
+      const title =
+        this.state.title === ""
+          ? this.props.note[this.props.modal.id].title
+          : this.state.title;
+      const body =
+        this.state.body === ""
+          ? this.props.note[this.props.modal.id].body
+          : this.state.body;
+      const color =
+        this.state.color === "rgb(246, 150, 161)"
+          ? this.props.note[this.props.modal.id].color
+          : this.state.color;
+      updateNote(
+        { title: title, body: body, color: color },
+        this.props.modal.id
+      );
     }
-    this.setState({title: '',
-          body: '',
-          color: ''});
+    this.setState({
+      title: "",
+      body: "",
+      color: ""
+    });
     this.closeModal();
   }
 
@@ -114,68 +135,88 @@ class Modal extends React.Component {
     }
 
     let backdropStyle = {
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      top: '0px',
-      left: '0px',
-      zIndex: '9998',
-      background: 'rgba(0, 0, 0, 0.3)'
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+      top: "0px",
+      left: "0px",
+      zIndex: "9998",
+      background: "rgba(0, 0, 0, 0.3)"
     };
 
-    const {id, type} = this.props.modal;
+    const { id, type } = this.props.modal;
     const { note } = this.props;
     let title = note[id] ? note[id].title : this.state.title;
     let body = note[id] ? note[id].body : this.state.body;
     let color = note[id] ? note[id].color : this.state.color;
-    if (color === "" && type === 'add') {
+    if (color === "" && type === "add") {
       color = this.state.color;
-    } else if (type === 'save') {
+    } else if (type === "save") {
       color = this.state.color;
     }
-    let saveColor = this.state.addDisabled ? 'rbg(162, 216, 220, .3)' : 'rbg(162, 216, 220)';
-    let saveClass = this.state.addDisabled ? 'modal__content--btn btn-save' : 'modal__content--btn btn btn--animated btn-save';
-    let cancelColor = 'rbg(200, 201, 202)';
+    let saveColor = this.state.addDisabled
+      ? "rbg(162, 216, 220, .3)"
+      : "rbg(162, 216, 220)";
+    let saveClass = this.state.addDisabled
+      ? "modal__content--btn btn-save"
+      : "modal__content--btn btn btn--animated btn-save";
+    let cancelColor = "rbg(200, 201, 202)";
 
-    if (this.props.modal.type === 'delete') {
+    if (this.props.modal.type === "delete") {
       return (
         <div className="modal">
-          <div className="modal-content delete-modal" >
+          <div className="modal-content delete-modal">
             <div className="delete-top">
-              <span>
-                Delete Note
-              </span>
+              <span>Delete Note</span>
             </div>
             <div className="delete-mid">
-              <p>
-                Are you sure you want to delete this note?
-              </p>
+              <p>Are you sure you want to delete this note?</p>
             </div>
             <div className="delete-bot">
-              <button className="delete-cancel" onClick={() => this.closeModal()}>Cancel</button>
-              <button className="delete-btn" onClick={this.deleteNote}>Delete</button>
+              <button
+                className="delete-cancel"
+                onClick={() => this.closeModal()}
+              >
+                Cancel
+              </button>
+              <button className="delete-btn" onClick={this.deleteNote}>
+                Delete
+              </button>
             </div>
           </div>
-          {!this.props.noBackdrop &&
-              <div className={this.props.backdropClassName} style={backdropStyle}
-                   onClick={e => this.closeModal()}/>}
+          {!this.props.noBackdrop && (
+            <div
+              className={this.props.backdropClassName}
+              style={backdropStyle}
+              onClick={e => this.closeModal()}
+            />
+          )}
         </div>
       );
     }
 
-
     return (
       <div className="modal">
         <div className="modal-content">
-          <div className="note-color"
-            style={{backgroundColor: color}}>
-          </div>
+          <div className="note-color" style={{ backgroundColor: color }} />
           <div className="modal-form">
             <div className="color-options">
-              <button className="btn-color btn-color-red color-outline" onClick={(e) => this.updateColor("rgb(246, 150, 161)", e)}></button>
-              <button className="btn-color btn-color-green" onClick={(e) => this.updateColor("rgb(168, 233, 199)", e)}></button>
-              <button className="btn-color btn-color-orange" onClick={(e) => this.updateColor("rgb(250, 212, 159)", e)}></button>
-              <button className="btn-color btn-color-blue" onClick={(e) => this.updateColor("rgb(159, 191, 249)", e)}></button>
+              <button
+                className="btn-color btn-color-red color-outline"
+                onClick={e => this.updateColor("rgb(246, 150, 161)", e)}
+              />
+              <button
+                className="btn-color btn-color-green"
+                onClick={e => this.updateColor("rgb(168, 233, 199)", e)}
+              />
+              <button
+                className="btn-color btn-color-orange"
+                onClick={e => this.updateColor("rgb(250, 212, 159)", e)}
+              />
+              <button
+                className="btn-color btn-color-blue"
+                onClick={e => this.updateColor("rgb(159, 191, 249)", e)}
+              />
             </div>
             <div className="input-fields">
               <input
@@ -183,24 +224,43 @@ class Modal extends React.Component {
                 placeholder="Untitled"
                 defaultValue={title}
                 onChange={this.updateTitle}
-                className="title-field">
-              </input>
+                className="title-field"
+              />
               <textarea
                 type="text"
                 placeholder="Just start typing here"
                 onChange={this.updateBody}
                 defaultValue={body}
-                className="body-field"></textarea>
+                className="body-field"
+              />
             </div>
             <div className="modal-bot">
-              <button type="button" className="cancel-btn-modal" onClick={() => this.closeModal()}>Cancel</button>
-              <button type="button" className="add-btn-modal" style={{ backgroundColor: saveColor }} disabled={this.state.addDisabled} onClick={this.handleSubmit}>{type}</button>
+              <button
+                type="button"
+                className="cancel-btn-modal"
+                onClick={() => this.closeModal()}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="add-btn-modal"
+                style={{ backgroundColor: saveColor }}
+                disabled={this.state.addDisabled}
+                onClick={this.handleSubmit}
+              >
+                {type}
+              </button>
             </div>
           </div>
         </div>
-        {!this.props.noBackdrop &&
-            <div className={this.props.backdropClassName} style={backdropStyle}
-                 onClick={e => this.closeModal()}/>}
+        {!this.props.noBackdrop && (
+          <div
+            className={this.props.backdropClassName}
+            style={backdropStyle}
+            onClick={e => this.closeModal()}
+          />
+        )}
       </div>
     );
   }

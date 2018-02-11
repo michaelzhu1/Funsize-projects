@@ -18,7 +18,8 @@ class NoteIndex extends React.Component {
               updateModal={this.props.updateModal}
               updateTitle={this.props.updateTitle}
               updateBody={this.props.updateBody}
-              updateColor={this.props.updateColor}/>
+              updateColor={this.props.updateColor}
+            />
           ))}
         </div>
       </div>

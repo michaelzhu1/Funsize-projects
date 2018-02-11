@@ -1,8 +1,8 @@
-import {UPDATE_MODAL} from "../actions/modal_actions";
+import { UPDATE_MODAL } from "../actions/modal_actions";
 
 const initialState = {
   isOpen: false,
-  type: '',
+  type: "",
   id: null
 };
 
