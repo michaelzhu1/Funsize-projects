@@ -61,6 +61,7 @@
   border: none;
   min-height: 80%;
   font-size: 30px;
+  margin-bottom: 20px;
 }
 
 .body-field {
@@ -71,6 +72,7 @@
   overflow: auto;
   border: none;
   height: 300px;
+  color: gray;
 }
 
 .input-fields {
@@ -80,7 +82,6 @@
 
 .add-btn-modal {
   color: white;
-  background-color: rgb(87, 184, 192);
   text-transform: capitalize;
   width: 140px;
   height: 62px;
@@ -107,12 +108,13 @@
 }
 
 .delete-modal {
+  color: gray;
   width: 555px;
   height: 343px;
   background-color: white;
   border-radius: 20px;
   overflow: hidden;
-  padding: 20px;
+  padding: 40px;
   display: flex;
   justify-content: space-around;
   flex-direction: column;

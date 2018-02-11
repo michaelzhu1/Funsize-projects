@@ -25,19 +25,22 @@ class Modal extends React.Component {
 
   closeModal() {
     this.props.updateModal(false);
-    if (this.props.modal.type === "save") {
-      this.setState({ title: "", body: "", color: "rgb(246, 150, 161)" });
-    }
+    this.setState({
+      title: "",
+      body: "",
+      color: "rgb(246, 150, 161)",
+      addDisabled: true
+    });
   }
 
   updateTitle(e) {
     this.setState({ title: e.target.value });
-    this.checkIfAddSaveIsActive();
+    this.checkActive();
   }
 
   updateBody(e) {
     this.setState({ body: e.target.value });
-    this.checkIfAddSaveIsActive();
+    this.checkActive();
   }
 
   updateColor(color, e) {
@@ -46,7 +49,7 @@ class Modal extends React.Component {
     this.removeClass("color-outline");
     e.target.classList.add("color-outline");
     if (this.props.type === "save") {
-      this.checkIfAddSaveIsActive();
+      this.checkActive();
     }
   }
 
@@ -57,7 +60,7 @@ class Modal extends React.Component {
     });
   }
 
-  checkIfAddSaveIsActive() {
+  checkActive() {
     const { note } = this.props;
     const { title, body, color } = this.props.note;
     const { type, id } = this.props.modal;
@@ -115,7 +118,8 @@ class Modal extends React.Component {
     this.setState({
       title: "",
       body: "",
-      color: "rgb(246, 150, 161)"
+      color: "rgb(246, 150, 161)",
+      addDisabled: true
     });
     this.closeModal();
   }
@@ -130,6 +134,7 @@ class Modal extends React.Component {
 
   render() {
     console.log(this.props.modal.type);
+    console.log(this.state.addDisabled);
     if (this.props.modal.isOpen === false) {
       return null;
     }
@@ -154,13 +159,7 @@ class Modal extends React.Component {
     } else if (type === "save") {
       color = this.state.color;
     }
-    let saveColor = this.state.addDisabled
-      ? "rbg(162, 216, 220, .3)"
-      : "rbg(162, 216, 220)";
-    let saveClass = this.state.addDisabled
-      ? "modal__content--btn btn-save"
-      : "modal__content--btn btn btn--animated btn-save";
-    let cancelColor = "rbg(200, 201, 202)";
+    let saveColor = this.state.addDisabled ? "#a2d8dc" : "#57b8c0";
 
     if (this.props.modal.type === "delete") {
       return (

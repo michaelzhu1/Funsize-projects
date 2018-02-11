@@ -40,13 +40,16 @@
 .body-section {
   padding: 25px;
   font-size: 20px;
-  color: gray;
+  color: rgb(142, 151, 161);
   resize: none;
   outline: none;
   border: none;
   height: auto;
   width: auto;
   overflow: hidden;
+  height: 260px;
+  width: 400px;
+  font-weight: 300;
 }
 
 .title {
