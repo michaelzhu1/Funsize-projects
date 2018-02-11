@@ -1,6 +1,6 @@
 # Post-It App
 
-I built this application with React, Redux and no backend. I tried to build this app with as few libraries as possible, so I built my own Modal class. I also used media query to enable responsive grid display. Thank you for your time! :smile:
+I built this application with React, Redux and no backend. I tried to build this app with as few libraries as possible, so I built my own Modal class. I also used media query to enable responsive grid display. Please run "npm install" before running the application. Thank you for your time! :smile:
 
 ## Feature
 
