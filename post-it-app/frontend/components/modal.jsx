@@ -3,13 +3,10 @@ import React from "react";
 class Modal extends React.Component {
   constructor(props) {
     super(props);
-    const title = "";
-    const body = "";
-    const color = "rgb(246, 150, 161)";
     this.state = {
-      title: title,
-      body: body,
-      color: color,
+      title: "",
+      body: "",
+      color: "rgb(246, 150, 161)",
       addDisabled: true
     };
     this.updateTitle = this.updateTitle.bind(this);
@@ -133,8 +130,6 @@ class Modal extends React.Component {
   }
 
   render() {
-    console.log(this.props.modal.type);
-    console.log(this.state.addDisabled);
     if (this.props.modal.isOpen === false) {
       return null;
     }

@@ -15,9 +15,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // updateTitle: (title) => dispatch(updateTitle(title)),
-  // updateBody: (body) => dispatch(updateBody(body)),
-  // updateColor: (color) => dispatch(updateColor(color)),
   addNote: note => dispatch(addNote(note)),
   updateModal: (isOpen, type, id) => dispatch(updateModal(isOpen, type, id)),
   updateNote: (note, id) => dispatch(updateNote(note, id)),

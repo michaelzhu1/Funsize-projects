@@ -4,12 +4,6 @@ import {
   UPDATE_COLOR
 } from "../actions/content_actions";
 
-// const initialState = {
-//   title: '',
-//   body: '',
-//   color: 'rgb(246, 150, 161)'
-// };
-
 export default function(state = {}, action) {
   switch (action.type) {
     case UPDATE_TITLE:
