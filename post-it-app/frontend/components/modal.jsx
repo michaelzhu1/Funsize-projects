@@ -115,7 +115,7 @@ class Modal extends React.Component {
     this.setState({
       title: "",
       body: "",
-      color: ""
+      color: "rgb(246, 150, 161)"
     });
     this.closeModal();
   }
