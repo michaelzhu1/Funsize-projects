@@ -1,19 +1,23 @@
 import { connect } from 'react-redux';
 import Modal from './modal';
-import { updateTitle, updateBody, updateColor, updateModal } from "../actions/modal_actions";
-import { addNote } from "../actions/note_actions";
+import { updateModal } from "../actions/modal_actions";
+import { updateTitle, updateBody, updateColor } from "../actions/content_actions";
+import { addNote, updateNote, deleteNote } from "../actions/note_actions";
 
 const mapStateToProps = state => ({
   note: state.note,
-  modal: state.modal
+  modal: state.modal,
+  content: state.content
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateTitle: (title) => dispatch(updateTitle(title)),
-  updateBody: (body) => dispatch(updateBody(body)),
-  updateColor: (color) => dispatch(updateColor(color)),
+  // updateTitle: (title) => dispatch(updateTitle(title)),
+  // updateBody: (body) => dispatch(updateBody(body)),
+  // updateColor: (color) => dispatch(updateColor(color)),
   addNote: (note) => dispatch(addNote(note)),
-  updateModal: (isOpen, type, id) => dispatch(updateModal(isOpen, type, id))
+  updateModal: (isOpen, type, id) => dispatch(updateModal(isOpen, type, id)),
+  updateNote: (note, id) => dispatch(updateNote(note, id)),
+  deleteNote: (id) => dispatch(deleteNote(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);

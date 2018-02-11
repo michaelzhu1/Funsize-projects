@@ -8,7 +8,7 @@ class Header extends React.Component {
     return(
       <header className="header">
         <button
-          onClick={() => this.props.updateModal(true, 'save')}
+          onClick={() => this.props.updateModal(true, 'add', null)}
           className="add-btn">&#65291; Add Note</button>
       </header>
     );

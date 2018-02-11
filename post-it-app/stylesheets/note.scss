@@ -2,8 +2,8 @@
   background-color: #f7f7f9;
   height: 100%;
   padding-top: 31px;
-  padding-left: 81px;
-  padding-right: 81px;
+  padding-left: 3%;
+  padding-right: 3%;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -32,7 +32,7 @@
 
 .title-section {
   height: 72px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid lightgray;
   font-size: 25px;
   padding: 25px;
 }
@@ -41,6 +41,16 @@
   padding: 25px;
   font-size: 20px;
   color: gray;
+  resize:none;
+  outline:none;
+  border:none;
+  height: auto;
+  width: auto;
+  overflow: hidden;
+}
+
+.title {
+  margin-right: auto;
 }
 
 .note-top {
@@ -51,7 +61,12 @@
 .icons i {
   margin-left: 15px;
   cursor: pointer;
+  color: darkgray;
 }
+.icons i:hover {
+  color: rgb(87, 184, 192);
+}
+
 
 @media only screen and (min-width: 800px) {
   .photo-index {

@@ -2,7 +2,7 @@ import {UPDATE_MODAL} from "../actions/modal_actions";
 
 const initialState = {
   isOpen: false,
-  type: 'add',
+  type: '',
   id: null
 };
 

@@ -3,14 +3,20 @@ import React from 'react';
 class Modal extends React.Component {
   constructor(props) {
     super(props);
+    const title =  '';
+    const body =  '';
+    const color = 'rgb(246, 150, 161)';
     this.state = {
-      title: '',
-      body: '',
-      color: ''
+      title: title,
+      body: body,
+      color: color,
+      addDisabled: true
     };
     this.updateTitle = this.updateTitle.bind(this);
     this.updateBody = this.updateBody.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateColor = this.updateColor.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
   }
 
   openModal() {
@@ -19,55 +25,92 @@ class Modal extends React.Component {
 
   closeModal() {
     this.props.updateModal(false);
+    if (this.props.modal.type === "save") {
+      this.setState({title: "", body: "", color: 'rgb(246, 150, 161)'});
+    }
   }
 
   updateTitle(e){
     this.setState({title: e.target.value});
+    this.checkIfAddSaveIsActive();
   }
 
   updateBody(e){
     this.setState({body: e.target.value});
+    this.checkIfAddSaveIsActive();
+  }
+
+  updateColor(color, e) {
+    e.persist();
+    this.setState({color: color});
+    this.removeClass('color-outline');
+    e.target.classList.add('color-outline');
+    if (this.props.type === 'save') {
+      this.checkIfAddSaveIsActive();
+    }
+  }
+
+  removeClass(classname) {
+    const elems = document.querySelectorAll(`.${classname}`);
+    elems.forEach(ele => {
+      ele.classList.remove(classname);
+    });
+  }
+
+  checkIfAddSaveIsActive() {
+    const { note } = this.props;
+    const { title, body, color} = this.props.note;
+    const { type, id } = this.props.modal;
+    if (type === 'save') {
+      if (note[id].body === body && note[id].title === title && note[id].color === color) {
+        this.setState({
+          addDisabled: true
+        });
+      } else {
+        this.setState({
+          addDisabled: false
+        });
+      }
+    } else if (type === 'add' && this.state.title.length + this.state.body.length > 0) {
+      this.setState({
+        addDisabled: false
+      });
+    } else {
+      this.setState({
+        addDisabled: true
+      });
+    }
   }
 
   handleSubmit(e) {
-    const { updateTitle, updateBody, updateColor, addNote } = this.props;
+    const { addNote, updateNote } = this.props;
     e.preventDefault();
-    // updateTitle(this.state.title);
-    // updateBody(this.state.body);
-    // updateColor(this.state.color);
-    addNote(this.state);
+    if (this.props.modal.type === 'add') {
+      addNote(this.state);
+    } else if (this.props.modal.type === 'save') {
+      const title = this.state.title === '' ? this.props.note[this.props.modal.id].title : this.state.title;
+      const body = this.state.body === '' ? this.props.note[this.props.modal.id].body : this.state.body;
+      const color = this.state.color === 'rgb(246, 150, 161)' ? this.props.note[this.props.modal.id].color : this.state.color;
+      updateNote({title: title, body: body, color: color}, this.props.modal.id);
+    }
     this.setState({title: '',
           body: '',
           color: ''});
     this.closeModal();
   }
 
+  deleteNote() {
+    this.props.deleteNote(this.props.modal.id);
+    this.closeModal();
+    this.setState({
+      addDisabled: true
+    });
+  }
+
   render() {
+    console.log(this.props.modal.type);
     if (this.props.modal.isOpen === false) {
       return null;
-    }
-
-    let modalStyle = {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      zIndex: '9999',
-      background: '#fff'
-    };
-
-    if (this.props.width && this.props.height) {
-      modalStyle.width = this.props.width + 'px';
-      modalStyle.height = this.props.height + 'px';
-      modalStyle.marginLeft = '-' + (this.props.width/2) + 'px',
-      modalStyle.marginTop = '-' + (this.props.height/2) + 'px',
-      modalStyle.transform = null;
-    }
-
-    if (this.props.style) {
-      for (let key in this.props.style) {
-        modalStyle[key] = this.props.style[key];
-      }
     }
 
     let backdropStyle = {
@@ -80,39 +123,80 @@ class Modal extends React.Component {
       background: 'rgba(0, 0, 0, 0.3)'
     };
 
-    if (this.props.backdropStyle) {
-      for (let key in this.props.backdropStyle) {
-        backdropStyle[key] = this.props.backdropStyle[key];
-      }
+    const {id, type} = this.props.modal;
+    const { note } = this.props;
+    let title = note[id] ? note[id].title : this.state.title;
+    let body = note[id] ? note[id].body : this.state.body;
+    let color = note[id] ? note[id].color : this.state.color;
+    if (color === "" && type === 'add') {
+      color = this.state.color;
+    } else if (type === 'save') {
+      color = this.state.color;
+    }
+    let saveColor = this.state.addDisabled ? 'rbg(162, 216, 220, .3)' : 'rbg(162, 216, 220)';
+    let saveClass = this.state.addDisabled ? 'modal__content--btn btn-save' : 'modal__content--btn btn btn--animated btn-save';
+    let cancelColor = 'rbg(200, 201, 202)';
+
+    if (this.props.modal.type === 'delete') {
+      return (
+        <div className="modal">
+          <div className="modal-content delete-modal" >
+            <div className="delete-top">
+              <span>
+                Delete Note
+              </span>
+            </div>
+            <div className="delete-mid">
+              <p>
+                Are you sure you want to delete this note?
+              </p>
+            </div>
+            <div className="delete-bot">
+              <button className="delete-cancel" onClick={() => this.closeModal()}>Cancel</button>
+              <button className="delete-btn" onClick={this.deleteNote}>Delete</button>
+            </div>
+          </div>
+          {!this.props.noBackdrop &&
+              <div className={this.props.backdropClassName} style={backdropStyle}
+                   onClick={e => this.closeModal()}/>}
+        </div>
+      );
     }
 
+
     return (
-      <div className={this.props.containerClassName}>
-        <div className="modal" style={modalStyle}>
+      <div className="modal">
+        <div className="modal-content">
           <div className="note-color"
-            style={{backgroundColor: this.props.color}}>
+            style={{backgroundColor: color}}>
           </div>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <button className="color-btn">red</button>
-              <button className="color-btn">green</button>
-              <button className="color-btn">yellow</button>
-              <button className="color-btn">blue</button>
+          <div className="modal-form">
+            <div className="color-options">
+              <button className="btn-color btn-color-red color-outline" onClick={(e) => this.updateColor("rgb(246, 150, 161)", e)}></button>
+              <button className="btn-color btn-color-green" onClick={(e) => this.updateColor("rgb(168, 233, 199)", e)}></button>
+              <button className="btn-color btn-color-orange" onClick={(e) => this.updateColor("rgb(250, 212, 159)", e)}></button>
+              <button className="btn-color btn-color-blue" onClick={(e) => this.updateColor("rgb(159, 191, 249)", e)}></button>
             </div>
-            <input
-              type="text"
-              placeholder="Untitled"
-              defaultValue={this.state.title}
-              onChange={this.updateTitle}>
-            </input>
-            <textarea
-              type="text"
-              placeholder="Just start typing here"
-              onChange={this.updateBody}></textarea>
-            {this.props.children}
-            <input type="submit" value="Add"/>
-          </form>
-          <button onClick={() => this.closeModal()}>Cancel</button>
+            <div className="input-fields">
+              <input
+                type="text"
+                placeholder="Untitled"
+                defaultValue={title}
+                onChange={this.updateTitle}
+                className="title-field">
+              </input>
+              <textarea
+                type="text"
+                placeholder="Just start typing here"
+                onChange={this.updateBody}
+                defaultValue={body}
+                className="body-field"></textarea>
+            </div>
+            <div className="modal-bot">
+              <button type="button" className="cancel-btn-modal" onClick={() => this.closeModal()}>Cancel</button>
+              <button type="button" className="add-btn-modal" style={{ backgroundColor: saveColor }} disabled={this.state.addDisabled} onClick={this.handleSubmit}>{type}</button>
+            </div>
+          </div>
         </div>
         {!this.props.noBackdrop &&
             <div className={this.props.backdropClassName} style={backdropStyle}

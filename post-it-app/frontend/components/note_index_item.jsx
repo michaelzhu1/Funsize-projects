@@ -4,9 +4,9 @@ class NoteIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      body: '',
-      color: ''
+      title: this.props.note.title,
+      body: this.props.note.body,
+      color: this.props.note.color
     };
     this.editNote = this.editNote.bind(this);
     this.removeNote = this.removeNote.bind(this);
@@ -14,14 +14,17 @@ class NoteIndexItem extends React.Component {
 
   editNote() {
     this.props.updateModal(true, 'save', this.props.id);
+    this.props.updateTitle(this.props.note.title);
+    this.props.updateBody(this.props.note.body);
+    this.props.updateColor(this.props.note.color);
   }
 
   removeNote() {
-
+    this.props.updateModal(true, 'delete', this.props.id);
   }
 
   render() {
-    const { color, title, body } = this.props.note;
+    const { color, title, body, id } = this.props.note;
     return(
       <div className="note">
         <div className="note-color"
@@ -29,19 +32,22 @@ class NoteIndexItem extends React.Component {
         </div>
         <div className="title-section">
           <span className="note-top">
-            {this.props.note.title}
+            <div className="title">
+              {this.props.note.title}
+            </div>
             <span className="icons">
               <i className="fa fa-pencil"
                 aria-hidden="true"
                 onClick={this.editNote}
                 ></i>
-              <i className="fa fa-trash" aria-hidden="true"></i>
+              <i className="fa fa-trash"
+                aria-hidden="true"
+                onClick={this.removeNote}></i>
             </span>
           </span>
         </div>
-        <div className="body-section">
-          {this.props.note.body}
-        </div>
+        <textarea readOnly name="noteContent" className="body-section" value={body}>
+        </textarea>
       </div>
     );
   }

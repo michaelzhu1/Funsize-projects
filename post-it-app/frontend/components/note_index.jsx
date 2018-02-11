@@ -15,7 +15,10 @@ class NoteIndex extends React.Component {
               key={index}
               id={index}
               note={note}
-              updateModal={this.props.updateModal}/>
+              updateModal={this.props.updateModal}
+              updateTitle={this.props.updateTitle}
+              updateBody={this.props.updateBody}
+              updateColor={this.props.updateColor}/>
           ))}
         </div>
       </div>

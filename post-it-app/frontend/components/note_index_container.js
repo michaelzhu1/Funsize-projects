@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import NoteIndex from './note_index';
-import { updateTitle, updateBody, updateColor, updateModal } from "../actions/modal_actions";
+import { updateModal } from "../actions/modal_actions";
+import { updateTitle, updateBody, updateColor} from "../actions/content_actions";
 
 
 const mapStateToProps = state => ({
